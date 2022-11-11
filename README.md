@@ -3,4 +3,4 @@
 <hr>
 
 <p><i>npm install</i> to install dependencies</p>
-<p><i>nodemon</i> to start server<p>
+<p><i>nodemon</i> to start local server on port 3000<p>
