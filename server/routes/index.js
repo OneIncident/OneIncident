@@ -1,9 +1,27 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
+
+let indexContronller = require('../controllers/index');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/', indexContronller.displayHomePage);
+
+router.get('/home', indexContronller.displayHomePage);
+
+router.get('/dashboard', indexContronller.displaydashboardPage);
+
+
+// GET route for Login Page
+router.get('/login', indexContronller.displayLoginPage);
+
+router.post('/login',indexContronller.processLoginPage);
+
+// GET route for Register Page
+router.get('/register', indexContronller.displayRegisterPage);
+
+router.post('/register',indexContronller.processRegisterPage);
+
+router.get('/logout', indexContronller.performLogout);
 
 module.exports = router;
+

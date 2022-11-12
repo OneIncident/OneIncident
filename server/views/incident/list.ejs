@@ -1,0 +1,74 @@
+<%-include ('partials/header.ejs')%>
+<%-include ('partials/main_nav.ejs')%>
+
+<body>
+    <div class="content">
+         <div class="centered">
+           <h2>Incident Record</h2>
+         </div>
+     </div>
+    
+    <div class="all">
+     <div class="row">
+         <div class="col-md-offset-3 col-md-12">
+ 
+           <% if(typeof displayName == 'string' && displayName) { %>
+           <a href="/incidentlist/add" class="btn btn-light" role="button">
+             <i class="fas fa-plus-circle"></i> Add a Contact
+           </a>
+           <% } %>
+           
+             <table class="table table-bordered table-striped table-hover">
+                 <tr class="d-flex">
+                   <% if(typeof displayName == 'string' && displayName) { %>
+                       <th class="text-center col-2">Name</th>
+                       <th class="text-center col-2">Date</th>
+                       <th class="text-center col-2">Time</th>
+                       <th class="text-center col-2">Location</th>
+                       <th class="text-center col-2">Description</th>
+                       <th class="text-center col-1"></th>
+                       <th class="text-center col-1"></th>
+                     <% } else { %>
+                      <th class="text-center col-2">Name</th>
+                      <th class="text-center col-2">Date</th>
+                      <th class="text-center col-2">Time</th>
+                      <th class="text-center col-2">Location</th>
+                      <th class="text-center col-4">Description</th>
+                     <%} %>
+                 </tr>
+ 
+                 <!--repeatable templete row-->
+                 <% for(let count=0; count < IncidentList.length; count++) {%>
+                     <tr class="d-flex">
+                       <% if(typeof displayName == 'string' && displayName) { %>
+                         <td class="text-center col-2"><%= IncidentList[count].name %></td>
+                         <td class="text-center col-2"><%= IncidentList[count].date %></td>
+                         <td class="text-center col-2"><%= IncidentList[count].time %></td>
+                         <td class="text-center col-2"><%= IncidentList[count].location %></td>
+                         <td class="text-center col-2"><%= IncidentList[count].description %></td>
+                         <td class="text-center col-1">
+                           <a href="/contactlist/edit/<%=IncidentList[count]._id%>" class="btn btn-light btn-sm">
+                           <i class="fas fa-pencil-alt"></i> Edit</a>
+                         </td>
+                         <td class="text-center col-1">
+                           <a href="/contactlist/delete/<%=IncidentList[count]._id%>" class="btn btn-danger btn-sm">
+                           <i class="fas fa-trash-alt"></i> Delete</a>
+                         </td>
+                         <% } else { %>
+                          <td class="text-center col-2"><%= IncidentList[count].name %></td>
+                          <td class="text-center col-2"><%= IncidentList[count].date %></td>
+                          <td class="text-center col-2"><%= IncidentList[count].time %></td>
+                          <td class="text-center col-2"><%= IncidentList[count].location %></td>
+                          <td class="text-center col-2"><%= IncidentList[count].description %></td>
+                           <%} %>
+                     </tr>
+                     <%}%>
+             </table>
+         </div>
+     </div>
+       
+    </div>
+ </body>
+ 
+ <%-include ('partials/bottom_nav.ejs')%>
+ <%-include ('partials/footer.ejs')%>   

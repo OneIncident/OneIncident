@@ -18,17 +18,18 @@ let ExtractJWT = passportJWT.ExtractJwt;
 let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
 
-/* TODO
+//TODO
 let mongoose = require('mongoose');
 let db=require('./db');
+
 //point mongoose to the db URI
-mongoose.connect(db.URI);
+mongoose.connect(db.URI, {useNewUrlParser: true, useUnifiedTopology: true});
 let mongoDB = mongoose.connection;
 mongoDB.on('error',console.error.bind(console,'connection Error:'));
 mongoDB.once('open',()=>{
   console.log('connected to MongoDB...');
 })
-*/
+
 let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
 let incidentsRouter = require('../routes/incidents');
@@ -62,18 +63,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //passport user Configuration
-/* TODO 
+
 //Create a user model instance
 let userModel = require('../model/user');
 let User = userModel.User;
 passport.use(User.createStrategy());
-*/
+
 
 //serialize and deserialize the user info
-/* TODO
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-*/
 
 /* TODO
 //jwt
