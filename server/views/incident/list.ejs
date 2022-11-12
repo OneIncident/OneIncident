@@ -1,5 +1,5 @@
-<%-include ('partials/header.ejs')%>
-<%-include ('partials/main_nav.ejs')%>
+<%-include ('../partials/header.ejs')%>
+<%-include ('../partials/main_nav.ejs')%>
 
 <body>
     <div class="content">
@@ -47,11 +47,11 @@
                          <td class="text-center col-2"><%= IncidentList[count].location %></td>
                          <td class="text-center col-2"><%= IncidentList[count].description %></td>
                          <td class="text-center col-1">
-                           <a href="/contactlist/edit/<%=IncidentList[count]._id%>" class="btn btn-light btn-sm">
+                           <a href="/incidentlist/edit/<%=IncidentList[count]._id%>" class="btn btn-light btn-sm">
                            <i class="fas fa-pencil-alt"></i> Edit</a>
                          </td>
                          <td class="text-center col-1">
-                           <a href="/contactlist/delete/<%=IncidentList[count]._id%>" class="btn btn-danger btn-sm">
+                           <a href="/incidentlist/delete/<%=IncidentList[count]._id%>" class="btn btn-danger btn-sm">
                            <i class="fas fa-trash-alt"></i> Delete</a>
                          </td>
                          <% } else { %>
@@ -70,5 +70,5 @@
     </div>
  </body>
  
- <%-include ('partials/bottom_nav.ejs')%>
- <%-include ('partials/footer.ejs')%>   
+ <%-include ('../partials/bottom_nav.ejs')%>
+ <%-include ('../partials/footer.ejs')%>    

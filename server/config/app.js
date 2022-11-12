@@ -94,7 +94,7 @@ passport.use(strategy);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/incidents',incidentsRouter);
+app.use('/incidentlist',incidentsRouter);
 
 
 
