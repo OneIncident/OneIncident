@@ -6,6 +6,7 @@ let incidentModel = mongoose.Schema({  //structure
     date: String,
     time: String,
     location: String,
+    priority: String,
     description: String
 },
 {

@@ -10,18 +10,18 @@ router.get('/home', indexContronller.displayHomePage);
 
 router.get('/dashboard', indexContronller.displaydashboardPage);
 
+// TODOc
+// // GET route for Login Page
+// router.get('/login', indexContronller.displayLoginPage);
 
-// GET route for Login Page
-router.get('/login', indexContronller.displayLoginPage);
+// router.post('/login',indexContronller.processLoginPage);
 
-router.post('/login',indexContronller.processLoginPage);
+// // GET route for Register Page
+// router.get('/register', indexContronller.displayRegisterPage);
 
-// GET route for Register Page
-router.get('/register', indexContronller.displayRegisterPage);
+// router.post('/register',indexContronller.processRegisterPage);
 
-router.post('/register',indexContronller.processRegisterPage);
-
-router.get('/logout', indexContronller.performLogout);
+// router.get('/logout', indexContronller.performLogout);
 
 module.exports = router;
 
