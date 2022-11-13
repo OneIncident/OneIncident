@@ -2,9 +2,10 @@ let mongoose = require('mongoose'); //access to mongoose class
 
 //create a model class
 let incidentModel = mongoose.Schema({  //structure
+    record: String,
     name: String,
     date: String,
-    time: String,
+    status: String,
     location: String,
     priority: String,
     description: String

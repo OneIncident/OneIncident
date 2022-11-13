@@ -18,27 +18,34 @@
 
             <table class="table table-bordered table-striped table-hover">
               <tr class="d-flex">
+                <th class="text-center col-1">Record Number</th>
                 <th class="text-center col-1">Name</th>
-                <th class="text-center col-2">Date</th>
-                <th class="text-center col-2">Time</th>
+                <th class="text-center col-2">Date(DDMMYY)</th>
+                <th class="text-center col-1">Status</th>
                 <th class="text-center col-2">Location</th>
                 <th class="text-center col-2">Description</th>
                 <th class="text-center col-1">Priority</th>
                 <th class="text-center col-1"></th>
                 <th class="text-center col-1"></th>
+              
               </tr>
-
+              <div style="visibility:hidden"><%= myNumber=1%></div>
+              
               <!--repeatable templete row-->
               <% for(let count=0; count < IncidentList.length; count++){%>
                 <tr class="d-flex">
+                    <td class="text-center col-1">
+                      <%= IncidentList[count].date %> 
+                      <p>- 0000<%=myNumber++%></p>
+                    </td>
                     <td class="text-center col-1">
                       <%= IncidentList[count].name %>
                     </td>
                     <td class="text-center col-2">
                       <%= IncidentList[count].date %>
                     </td>
-                    <td class="text-center col-2">
-                      <%= IncidentList[count].time %>
+                    <td class="text-center col-1">
+                      <%= IncidentList[count].status %>
                     </td>
                     <td class="text-center col-2">
                       <%= IncidentList[count].location %>
