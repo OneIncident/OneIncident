@@ -4,7 +4,6 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
-
 //modules for authentication
 let session = require('express-session');
 // modules for JWT

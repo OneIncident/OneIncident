@@ -18,7 +18,7 @@ module.exports.displayIncidentList = (req,res,next)=>{
                 IncidentList: incidentList,
                 displayName: req.user ? req.user.displayName: ''});
         }
-    });
+    }).sort({priority : 1});
 }
 
 module.exports.displayAddPage = (req,res,next)=>{
@@ -32,7 +32,8 @@ module.exports.processAddPage = (req,res,next)=>{
         "date": req.body.date,
         "status": req.body.status,
         "location": req.body.location,
-        "description": req.body.description
+        "description": req.body.description,
+        "priority":req.body.priority
     });
     Incident.create(newIncident, (err, Incident) =>{
         if (err) {
@@ -74,7 +75,8 @@ module.exports.processEditPage = (req,res,next)=>{
         "date": req.body.date,
         "status": req.body.status,
         "location": req.body.location,
-        "description": req.body.description
+        "description": req.body.description,
+        "priority":req.body.priority
     });
 
     Incident.updateOne({_id: id}, updatedIncident, (err) =>{
