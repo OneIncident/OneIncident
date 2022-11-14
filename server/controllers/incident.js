@@ -30,7 +30,7 @@ module.exports.processAddPage = (req,res,next)=>{
     let newIncident = Incident({
         "name": req.body.name,
         "date": req.body.date,
-        "time": req.body.time,
+        "status": req.body.status,
         "location": req.body.location,
         "description": req.body.description
     });
@@ -72,12 +72,12 @@ module.exports.processEditPage = (req,res,next)=>{
         "_id": id,
         "name": req.body.name,
         "date": req.body.date,
-        "time": req.body.time,
+        "status": req.body.status,
         "location": req.body.location,
         "description": req.body.description
     });
 
-    Business.updateOne({_id: id}, updatedIncident, (err) =>{
+    Incident.updateOne({_id: id}, updatedIncident, (err) =>{
         if(err) {
             console.log(err);
             res.end(err);
@@ -92,7 +92,7 @@ module.exports.processEditPage = (req,res,next)=>{
 module.exports.performDelete = (req,res,next)=>{
     let id = req.params.id;
 
-    Business.remove({_id: id}, (err)=>{
+    Incident.remove({_id: id}, (err)=>{
         if(err) {
             console.log(err);
             res.end(err);
