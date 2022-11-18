@@ -17,7 +17,7 @@ let ExtractJWT = passportJWT.ExtractJwt;
 let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
 
-//TODO
+//TODO SET up MONGODB
 let mongoose = require('mongoose');
 let db=require('./db');
 
@@ -47,11 +47,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
+
 //setup express session
 app.use(session({
   secret:'SomeSecret',
   saveUninitialized:false,
-  //resave:false
+  //resave:false MAYBE NEED TO DELETE
   resave:false
 }));
 
