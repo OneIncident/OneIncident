@@ -5,14 +5,15 @@ let mongoose = require('mongoose');
 let passport = require('passport');
 let incidentController = require('../controllers/incident');
 
-//helper function for huard purposes
-function requireAuth (req,res,next) {
-    //check if the user is logged in
-    if(!req.isAuthenticated()){
-        return res.redirect('/login');
-    }
-    next();
-}
+//AUTH
+ //helper function for guard purposes
+ function requireAuth (req,res,next) {
+     //check if the user is logged in
+     if(!req.isAuthenticated()){
+         return res.redirect('/login');
+     }
+     next();
+ }
 
 /* GET Route for the incident list -- READ operation*/
 router.get('/', incidentController.displayIncidentList);
