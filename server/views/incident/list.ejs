@@ -12,11 +12,14 @@
         <div class="row">
           <div class="col-md-offset-3 col-md-12">
 
+            <% if(typeof displayName == 'string' && displayName) { %>
             <a href="/incidentlist/add" class="btn btn-light" role="button">
               <i class="fas fa-plus-circle"></i> Make a ticket
             </a>
-
+            <% } %>
+            <br>
             <table class="table table-bordered table-striped table-hover">
+              <% if(typeof displayName == 'string' && displayName) { %>
               <tr class="d-flex">
                 <th class="text-center col-1">Record Number</th>
                 <th class="text-center col-1">Name</th>
@@ -25,15 +28,25 @@
                 <th class="text-center col-2">Location</th>
                 <th class="text-center col-2">Description</th>
                 <th class="text-center col-1">Priority</th>
+             
                 <th class="text-center col-1"></th>
                 <th class="text-center col-1"></th>
-              
+                <% } else{ %>
+                  <th class="text-center col-1">Record Number</th>
+                  <th class="text-center col-1">Name</th>
+                  <th class="text-center col-2">Date(DDMMYY)</th>
+                  <th class="text-center col-1">Status</th>
+                  <th class="text-center col-2">Location</th>
+                  <th class="text-center col-6">Description</th>
+                  <th class="text-center col-1">Priority</th>
+                  <% } %>
               </tr>
               <div style="visibility:hidden"><%= myNumber=1%></div>
               
               <!--repeatable templete row-->
-              <% for(let count=0; count < IncidentList.length; count++){%>
+              <% for(let count=0; count < IncidentList.length; count++) {%>
                 <tr class="d-flex">
+                  <% if(typeof displayName == 'string' && displayName) { %>
                     <td class="text-center col-1">
                       <%= IncidentList[count].date %> 
                       <p>- 0000<%=myNumber++%></p>
@@ -56,6 +69,8 @@
                     <td class="text-center col-1">
                       <%= IncidentList[count].priority %>
                     </td>
+
+                    
                     <td class="text-center col-1">
                       <a href="/incidentlist/edit/<%=IncidentList[count]._id%>" class="btn btn-light btn-sm">
                         <i class="fas fa-pencil-alt"></i> Edit</a>
@@ -64,7 +79,33 @@
                       <a href="/incidentlist/delete/<%=IncidentList[count]._id%>" class="btn btn-danger btn-sm">
                         <i class="fas fa-trash-alt"></i> Delete</a>
                     </td>
+                    <%} else {%>
+                      <td class="text-center col-1">
+                        <%= IncidentList[count].date %> 
+                        <p>- 0000<%=myNumber++%></p>
+                      </td>
+                      <td class="text-center col-1">
+                        <%= IncidentList[count].name %>
+                      </td>
+                      <td class="text-center col-2">
+                        <%= IncidentList[count].date %>
+                      </td>
+                      <td class="text-center col-1">
+                        <%= IncidentList[count].status %>
+                      </td>
+                      <td class="text-center col-2">
+                        <%= IncidentList[count].location %>
+                      </td>
+                      <td class="text-center col-2">
+                        <%= IncidentList[count].description %>
+                      </td>
+                      <td class="text-center col-1">
+                        <%= IncidentList[count].priority %>
+                      </td>
+
+                      <% } %> 
                 </tr>
+
               <%}%>
             </table>
           </div>

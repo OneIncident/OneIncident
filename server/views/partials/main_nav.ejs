@@ -15,6 +15,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
           <% if (title =="Home"){%>
           <li class="nav-item">
             <%} else {%>
@@ -35,9 +36,11 @@
             <a class="nav-link active" aria-current="page" href="/incidentlist"><i class="fas fa-regular fa-layer-group"></i> Incident Record</a>
             <%}%>
           </li>
+          
 
           <!-- TODO -->
-          <!-- <% if(typeof displayName == 'string' && displayName) { %>
+           <% if(typeof displayName == 'string' && displayName) { %>
+            
             <li class="navbar-text"><i class="fas fa-lg fa-user"></i>Welcome, <%= displayName %></li>
           <li class="nav-item"><a href="/logout" class="nav-link">
             <i class="fas fa-lg fa-sign-out-alt"></i> Logout</a></li>
@@ -45,7 +48,7 @@
             <li class="nav-item"><a href="/login" class="nav-link">
               <i class="fas fa-lg fa-sign-in-alt"></i> Login</a></li>
 
-            <% } %> -->
+            <% } %> 
 
       </div>
     </div>
