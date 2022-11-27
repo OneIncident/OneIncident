@@ -9,6 +9,8 @@ import { BasePageComponent } from './partials/base-page/base-page.component';
 import { FooterComponent } from './partials/footer/footer.component';
 import { HeaderComponent } from './partials/header/header.component';
 
+//control file
+//entry point for the App
 @NgModule({
   declarations: [
     AppComponent,
