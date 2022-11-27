@@ -1,0 +1,40 @@
+<div class="bg-primary p-2 text-white" [class.bg-warning]="editing" [class.text-dark]="editing">
+    <h5>{{editing ? "Edit" : "Create"}} Incident</h5>
+</div>
+<form novalidate #form="ngForm" (ngSubmit)="save(form)">
+    <div class="form-group">
+        <label>Record</label>
+        <input class="form-control" name="record" [(ngModel)]="inc.record" />
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" name="name" [(ngModel)]="inc.name" />
+    </div>
+    <div class="form-group">
+        <label>Date</label>
+        <input class="form-control" name="date" [(ngModel)]="inc.date" />
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <input class="form-control" name="status" [(ngModel)]="inc.status" />
+    </div>
+    <div class="form-group">
+        <label>Location</label>
+        <input class="form-control" name="location" [(ngModel)]="inc.location" />
+    </div>
+    <div class="form-group">
+        <label>Priority</label>
+        <input class="form-control" name="priority" [(ngModel)]="inc.priority" />
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <textarea class="form-control" name="description" [(ngModel)]="inc.description">
+        </textarea>
+    </div>
+    <button type="submit" class="btn btn-primary m-1" [class.btn-warning]="editing">
+        {{editing ? "Save" : "Create"}}
+    </button>
+    <button type="reset" class="btn btn-secondary" routerLink="/admin/main/incucts">
+        Cancel
+    </button>
+</form>

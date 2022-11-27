@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class = "row">
+      <!-- <div class="col-3 bg-info p-2 text-white">
+        {{incident.record}}Record
+        </div> -->
+        <div class="col-9 p-2">
+          <div *ngFor = "let incident of incidents" class="card m-1 p-1 bg-light">
+            <h4>
+          {{incident.name}}
+  
+            <span class="badge badge-pill badge-primary float-right" style="color:blue;">
+              {{incident.status}}
+            </span>
+          </h4>
+          <div class="card-text bg-white p-1">
+            {{incident.description}}
+            </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  

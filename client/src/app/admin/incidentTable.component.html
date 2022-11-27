@@ -1,0 +1,39 @@
+
+<table class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Record</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Location</th>
+            <th>Priority</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of getIncidents()">
+            <td>{{i.id}}</td>
+            <td>{{i.record}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.date}}</td>
+            <td>{{i.status}}</td>
+            <td>{{i.location}}</td>
+            <td>{{i.priority}}</td>
+            <td>{{i.description}}</td>
+            <td>
+                <button class="btn btn-sm btn-warning m-1" [routerLink]="['/admin/main/incidentlist/edit', i.id!]">
+                    Edit
+                </button>
+                <button class="btn btn-sm btn-danger" (click)="deleteIncident(i.id!)">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button class="btn btn-primary" routerLink="/admin/main/incidentlist/create">
+    Create New Incident
+</button>
