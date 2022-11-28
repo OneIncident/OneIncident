@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { Incident } from "./incident.model";
 import { map } from "rxjs/operators";
 import { JwtHelperService} from '@auth0/angular-jwt';
+import { User } from "./user.model";
 
 let PROTOCOL = 'http';
 let PORT = 3500;
@@ -12,7 +13,8 @@ let PORT = 3500;
 
 @Injectable({providedIn: 'any'})
 export class RestDataSource{
-    baseUrl: string;
+    user!: User;
+    baseUrl!: string;
     auth_token!: string;
 
     private httpOptions = {
@@ -23,20 +25,41 @@ export class RestDataSource{
         })
     }
     constructor(private http: HttpClient, private jwtService: JwtHelperService){
+        this.user = new User();
         this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
     }
 
     getIncidents(): Observable<Incident[]>{
         return this.http.get<Incident[]>(this.baseUrl + 'incidentlist');
     }
-    authenticate(user: string, pass: string): Observable<boolean> {
-        return this.http.post<any>(this.baseUrl + "login", {
-            name: user, password: pass
-        }).pipe(map(response => {
+    authenticate(user: User): Observable<boolean> {
+        return this.http.post<any>(this.baseUrl + 'login', user, this.httpOptions)
+        .pipe(map(response => {
             this.auth_token = response.success ? response.token : null;
             return response.success;
+            
         }));
     }
+
+    storeUserData(token: any, user: User): void{
+        localStorage.setItem('id_token','Bearer' + token);
+        localStorage.setItem('user', JSON.stringify(user));
+        this.auth_token = token;
+        this.user = user;
+    }
+
+    logout(): Observable<any>{
+        this.auth_token = null!;
+        this.user = null!;
+        localStorage.clear()
+
+        return this.http.get<any>(this.baseUrl + 'logout', this.httpOptions);
+    }
+
+    loggedIn(): boolean{
+        return !this.jwtService.isTokenExpired(this.auth_token);
+    }
+
 
     saveIncident(incident: Incident): Observable<Incident> {
         return this.http.post<Incident>(this.baseUrl + "incidentlist",

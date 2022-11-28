@@ -1,23 +1,31 @@
 
 <div class="bg-info p-2 text-center text-white">
-    <h3>SportsStore Admin</h3>
+    <h3>IncidentList Admin</h3>
 </div>
+
 <div class="bg-danger mt-2 p-2 text-center text-white" *ngIf="errorMessage != null">
     {{errorMessage}}
 </div>
+
 <div class="p-2">
-    <form novalidate #form="ngForm" (ngSubmit)="authenticate(form)">
+
+    <h1>Please Login</h1>
+
+    <form autocomplete='off' novalidate #form="ngForm" (ngSubmit)="authenticate(form)">
+
         <div class="form-group">
             <label>Name</label>
-            <input class="form-control" name="username" [(ngModel)]="username" required />
+            <input id="username"class="form-control" name="username" [(ngModel)]="user.username" required />
         </div>
+
         <div class="form-group">
             <label>Password</label>
-            <input class="form-control" type="password" name="password" [(ngModel)]="password" required />
+            <input id="password" class="form-control" type="password" name="password" [(ngModel)]="user.password" required />
         </div>
+
         <div class="text-center">
-            <button class="btn btn-secondary m-1" routerLink="/">Go back</button>
             <button class="btn btn-primary m-1" type="submit">Log In</button>
+            <button class="btn btn-secondary m-1" routerLink="/home"> <i class="btn btn-secondary m-1"></i> Go back</button>
         </div>
     </form>
 </div>

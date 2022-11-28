@@ -9,6 +9,9 @@ import { AuthService } from "../model/auth.service";
 @Injectable()
 export class AuthGuard {
 
+    path!: ActivatedRouteSnapshot;
+    route!: ActivatedRouteSnapshot;
+
     constructor(private router: Router,
         private auth: AuthService) { }
 
@@ -16,9 +19,11 @@ export class AuthGuard {
                 state: RouterStateSnapshot): boolean 
     {
         if (!this.auth.authenticated) {
+            console.log('Can\'t Authenticate')
             this.router.navigateByUrl("/admin/auth");
             return false;
         }
+        console.log('authenticated');
         return true;
     }
 }

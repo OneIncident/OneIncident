@@ -1,20 +1,34 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { RestDataSource } from "./rest.datasource";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { User } from "./user.model";
 
 @Injectable()
 export class AuthService {
 
-    constructor(private datasource: RestDataSource) {}
+    user!: User;
 
-    authenticate(username: string, password: string): Observable<boolean> {
-        return this.datasource.authenticate(username, password);
+    constructor(private datasource: RestDataSource) {
+        this.user = new User();
+    }
+
+    authenticate(user: User): Observable<any> {
+        return this.datasource.authenticate(user);
     }
 
     get authenticated(): boolean {
-        return this.datasource.auth_token != null;
+        return this.datasource.loggedIn();
     }
 
+    storeUserData(token: any, user: User): void{
+        this.datasource.storeUserData(token, user);
+    }
+
+    logout(): Observable<any>{
+        return this.datasource.logout();
+    }
+   
     clear() {
         this.datasource.auth_token = "";
     }
