@@ -4,6 +4,7 @@ import {
     Router
 } from "@angular/router";
 import { IncidentListComponent } from "./incident-list/incident-list.component";
+import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { HomeComponent } from "./pages/home/home.component";
 @Injectable()
 export class HomeFirstGuard {
@@ -13,7 +14,7 @@ export class HomeFirstGuard {
         state: RouterStateSnapshot): boolean {
         if (this.firstNavigation) {
             this.firstNavigation = false;
-            if (route.component != IncidentListComponent) {
+            if (route.component != DashboardComponent) {
                 this.router.navigateByUrl("/incidentlist");
                 return false;
             }

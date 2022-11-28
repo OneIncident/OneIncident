@@ -47,7 +47,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
-
+app.use(cors());
 //setup express session
 app.use(session({
   secret:'SomeSecret',
@@ -75,7 +75,7 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-/* TODO
+
 //jwt
 let jwtOptions = {}; 
 jwtOptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
@@ -90,7 +90,6 @@ let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done)=>{
   });
 });
 passport.use(strategy);
-*/
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

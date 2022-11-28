@@ -12,18 +12,22 @@ module.exports.displayIncidentList = (req,res,next)=>{
         }
         else {
             
-            res.render('incident/list', 
-            {
-                title: 'Incident Record', 
-                IncidentList: incidentList,
-                displayName: req.user ? req.user.displayName: ''});
+            // res.render('incident/list', 
+            // {
+            //     title: 'Incident Record', 
+            //     IncidentList: incidentList,
+            //     displayName: req.user ? req.user.displayName: ''});
+
+            res.json(incidentList);
         }
     }).sort({priority : 1});
 }
 
 module.exports.displayAddPage = (req,res,next)=>{
-    res.render('incident/add', {title: 'Add Incident',
-    displayName: req.user ? req.user.displayName: ''});
+    /*res.render('incident/add', {title: 'Add Incident',
+    displayName: req.user ? req.user.displayName: ''});*/
+
+    res.json({success: true, msg:'Successfully Displayed Add Page'});
 }
 
 module.exports.processAddPage = (req,res,next)=>{
@@ -42,7 +46,8 @@ module.exports.processAddPage = (req,res,next)=>{
         }
         else {
             //refresh the list
-            res.redirect('/incidentlist');
+            // res.redirect('/incidentlist');
+            res.json({success: true, msg: 'Successfully Added a new Incident'});
         }
     });
 }
@@ -57,11 +62,13 @@ module.exports.displayEditPage = (req,res,next)=>{
         }
         else {
             //show the edit view
-            res.render('incident/edit', 
-            {
-                title: 'Edit Incident', 
-                incident: incidentToEdit,
-                displayName: req.user ? req.user.displayName: ''});
+            // res.render('incident/edit', 
+            // {
+            //     title: 'Edit Incident', 
+            //     incident: incidentToEdit,
+            //     displayName: req.user ? req.user.displayName: ''});
+
+            res.json({success: true, msg:'Successfully Displayed Incident to Editted', Incident : incidentToEdit});
         }
     });
 
@@ -86,7 +93,9 @@ module.exports.processEditPage = (req,res,next)=>{
         }
         else {
             //refresh the contact list
-            res.redirect('/incidentlist');
+            // res.redirect('/incidentlist');
+
+            res.json({success: true, msg:'Succesfully Edited Incident', Incident: updatedIncident});
         }
     });
 }
@@ -101,7 +110,9 @@ module.exports.performDelete = (req,res,next)=>{
         }
         else {
             //refresh the contact list
-            res.redirect('/incidentlist');
+            // res.redirect('/incidentlist');
+
+            res.json({success: true, msg: 'Scuessfully Deleted Incident'});
         }
     });
 }

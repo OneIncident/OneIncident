@@ -29,7 +29,7 @@ module.exports.displayLoginPage = (req,res,next)=> {
         return res.redirect('/');
     }
 }
-// TODO
+// TODO change for migration to Angular
 module.exports.processLoginPage = (req,res,next)=> {
     passport.authenticate('local',
     (err,user,info)=> {
@@ -48,7 +48,27 @@ module.exports.processLoginPage = (req,res,next)=> {
             if (err) {
                 return next(err);
             }
-            return res.redirect('/incidentlist');
+
+            const payload = {
+                id: user._id,
+                displayName: user.displayName,
+                username: user.username,
+                email: user.email
+            }
+
+            const authToken = jwt.sign(payload, DB.Secret, {
+                expiresIn: 604800 // 1 week
+            });
+            
+            // TODO - Getting ready to convert to API
+            return res.json({sucess: true, msg: 'User Logged in Successfully!', user:{
+                id: user._id,
+                displayName: user.displayName,
+                username: user.username,
+                email: user.email
+            }, token: authToken});  
+             
+            // return res.redirect('/incidentlist');
         });
     })(req,res,next);
 }
@@ -102,9 +122,12 @@ module.exports.processRegisterPage = (req,res,next) => {
 
             //redirect the user and authenticate them
 
-            return passport.authenticate('local')(req,res, () =>{
-                res.redirect('/incidentlist');
-            });
+            //TODO - Getting Ready to convert to API
+            return res.json({success: true, msg: 'User Registered Successfully!'});
+
+            // return passport.authenticate('local')(req,res, () =>{
+            //     res.redirect('/incidentlist');
+            // });
         
     };
 });
@@ -116,5 +139,6 @@ module.exports.performLogout = (req, res, next) => {
             return next(err);
         }
     });
-    res.redirect('/');
+    // res.redirect('/');
+    res.json({success: true, msg: 'User Sucessfully Logged Out'});
 }
