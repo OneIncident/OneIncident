@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 
-let indexContronller = require('../controllers/index');
+let indexController = require('../controllers/index');
 
 // /* GET home page. */
 // router.get('/', indexContronller.displayHomePage);
@@ -16,14 +16,14 @@ let indexContronller = require('../controllers/index');
 // // GET route for Login Page
 //  router.get('/login', indexContronller.displayLoginPage);
 
- router.post('/login',indexContronller.processLoginPage);
+ router.post('/login', indexController.processLoginPage);
 
 // // GET route for Register Page
 //  router.get('/register', indexContronller.displayRegisterPage);
 
- router.post('/register',indexContronller.processRegisterPage);
+ router.post('/register',indexController.processRegisterPage);
 
- router.get('/logout', indexContronller.performLogout);
+ router.get('/logout', indexController.performLogout);
 
 module.exports = router;
 

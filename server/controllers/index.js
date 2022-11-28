@@ -19,7 +19,7 @@ module.exports.displaydashboardPage = (req,res,next)=>{
 module.exports.displayLoginPage = (req,res,next)=> {
     //check if the user is already logged in
     if(!req.user){
-        res.render('auth/login',
+        res.render('/auth/login',
         {
             title: "Login",
             messages: req.flash('loginMessage'),

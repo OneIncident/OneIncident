@@ -6,7 +6,8 @@ import { User } from "../model/user.model";
 
 @Component({
     selector: 'app-auth',
-    templateUrl: "auth.component.html"
+    templateUrl: "auth.component.html",
+    providers: [AuthService]
 })
 
 export class AuthComponent implements OnInit{
