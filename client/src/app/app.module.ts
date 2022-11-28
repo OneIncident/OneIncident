@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -12,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { HomeFirstGuard } from './homeFirst.guard';
 import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
 import { IncidentListComponent } from './incident-list/incident-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 export function jwtTokenGetter(): string {
   return localStorage.getItem('id_token')!;
@@ -27,7 +27,7 @@ export function jwtTokenGetter(): string {
     IncidentListComponent
   ],
   imports: [
-    
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot([
