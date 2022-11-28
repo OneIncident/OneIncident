@@ -8,6 +8,7 @@ import { AuthGuard } from "./auth.guard";
 import { IncidentTableComponent } from "./incidentTable.component";
 import { IncidentEditorComponent } from "./incidentEditor.component";
 import { AppModule } from "../app.module";
+import { AuthService } from "../model/auth.service";
 
 let routing = RouterModule.forChild([
     { path: "auth", component: AuthComponent },
@@ -20,12 +21,13 @@ let routing = RouterModule.forChild([
             { path: "**", redirectTo: "incidentlist" }
         ]
     },
-    { path: "**", redirectTo: "auth" }
+    { path: "**", redirectTo: "auth" },
+    { path: " ", redirectTo: "auth" }
 ]);
 
 @NgModule({
     imports: [CommonModule, FormsModule, routing,],
-    providers: [AuthGuard],
+    providers: [AuthGuard, AuthService],
     declarations: [AuthComponent, AdminComponent,
         IncidentTableComponent, IncidentEditorComponent]
 })

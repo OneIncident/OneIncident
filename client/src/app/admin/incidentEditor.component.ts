@@ -3,9 +3,11 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { Incident } from "../model/incident.model";
 import { IncidentRepository } from "../model/incident.repository";
+import { AuthService } from "../model/auth.service";
 
 @Component({
-    templateUrl: "incidentEditor.component.html"
+    templateUrl: "incidentEditor.component.html",
+    providers: [AuthService]
 })
 
 export class IncidentEditorComponent {

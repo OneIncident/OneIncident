@@ -12,6 +12,7 @@ import { DashboardFirstGuard } from './dashboardFirst.guard';
 import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
 import { IncidentListComponent } from './incident-list/incident-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminModule } from './admin/admin.module';
 
 export function jwtTokenGetter(): string {
   return localStorage.getItem('id_token')!;

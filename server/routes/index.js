@@ -16,7 +16,8 @@ let indexController = require('../controllers/index');
 // // GET route for Login Page
 //  router.get('/login', indexContronller.displayLoginPage);
 
- router.post('/login', indexController.processLoginPage);
+
+router.post('/login',indexController.processLoginPage);
 
 // // GET route for Register Page
 //  router.get('/register', indexContronller.displayRegisterPage);

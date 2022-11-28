@@ -1,3 +1,4 @@
+const { json } = require('express');
 let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
@@ -41,7 +42,7 @@ module.exports.processLoginPage = (req,res,next)=> {
         if(!user)
         {
             req.flash('loginMessage','Authentication Error');
-            return res.redirect('/login');
+            return res.redirect('/auth/login');
         }
         req.login(user, (err)=> {
             //server error?
