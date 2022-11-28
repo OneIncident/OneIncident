@@ -19,7 +19,7 @@ export class AuthGuard {
                 state: RouterStateSnapshot): boolean 
     {
         if (!this.auth.authenticated) {
-            console.log('Can\'t Authenticate')
+            console.log('Can\'t Authenticate');
             this.router.navigateByUrl("/admin/auth");
             return false;
         }

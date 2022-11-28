@@ -12,8 +12,10 @@ const routes: Routes = [
   
   { path: 'dashboard', component: DashboardComponent, data: { title: 'Incident Dashboard', displayName: '' }, canActivate: [DashboardFirstGuard] },
   { path: 'incidentlist', component: IncidentListComponent, data: { title: 'Incident List' }, canActivate: [DashboardFirstGuard] },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), canActivate: [DashboardFirstGuard] },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home', pathMatch: 'full' }
 
 ];
 

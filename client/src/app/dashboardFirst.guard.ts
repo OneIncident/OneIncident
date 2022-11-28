@@ -9,12 +9,15 @@ import { HomeComponent } from "./pages/home/home.component";
 @Injectable()
 export class DashboardFirstGuard {
     private firstNavigation = true;
+
     constructor(private router: Router) { }
-    canActivate(route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot): boolean {
+
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        
         if (this.firstNavigation) {
             this.firstNavigation = false;
-            if (route.component != DashboardComponent) {
+            if (route.component !== DashboardComponent) {
+                console.log('->Debug->Dashboardfirst Guard')
                 this.router.navigateByUrl("/incidentlist");
                 return false;
             }

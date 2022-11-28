@@ -24,7 +24,8 @@ export function jwtTokenGetter(): string {
     BasePageComponent,
     FooterComponent,
     HeaderComponent,
-    IncidentListComponent
+    IncidentListComponent,
+    
   ],
   imports: [
     HttpClientModule,

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "../model/auth.service";
@@ -9,7 +9,7 @@ import { User } from "../model/user.model";
     templateUrl: "auth.component.html"
 })
 
-export class AuthComponent {
+export class AuthComponent implements OnInit{
     public user!: User;
     public errorMessage!: string;
 
