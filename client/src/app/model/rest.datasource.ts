@@ -18,8 +18,8 @@ export class RestDataSource{
     private httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+            'Access-Control-Allow-Origin': '*, http://localhost:3500, Always',
+            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
         })
     }
     constructor(private http: HttpClient, private jwtService: JwtHelperService){
