@@ -3,10 +3,11 @@ import { Incident } from "./incident.model";
 //import { StaticDataSource } from "./static.datasource";
 import { RestDataSource } from "./rest.datasource";
 
-@Injectable({providedIn: 'any'})
+@Injectable({ providedIn: 'any' })
 export class IncidentRepository {
     private incidents: Incident[] = [];
     // private categories: string[] = [];
+    private loaded = false;
 
     constructor(private dataSource: RestDataSource) {
         dataSource.getIncidents().subscribe(data => {
@@ -16,12 +17,22 @@ export class IncidentRepository {
         });
     }
 
-    getIncidents(): Incident[] {
-        return this.incidents
-            // .filter(p => category == null || category == p.category!);
+    loadIncidents(): void {
+        this.loaded = true;
+        this.dataSource.getIncidents()
+        .subscribe(incidents => this.incidents = incidents);
     }
 
-    
+    // to promote no double loading of data
+    getIncidents(): Incident[] {
+        if(!this.loaded){
+            this.loadIncidents();
+        }
+        return this.incidents
+        // .filter(p => category == null || category == p.category!);
+    }
+
+
     getIncident(id: number): Incident {
         return (this.incidents.find(i => i.id == id)!);
     }
