@@ -28,6 +28,6 @@ export class IncidentEditorComponent {
 
     save(form: NgForm) {
         this.repository.saveIncident(this.inc);
-        this.router.navigateByUrl("/admin/main/incidents");
+        this.router.navigateByUrl("/admin/main/incidentlist");
     }
 }

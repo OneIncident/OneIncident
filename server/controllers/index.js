@@ -78,7 +78,7 @@ module.exports.displayRegisterPage = (req,res,next) => {
     //check if the user is net already logged in
     if(!req.user)
     {
-        res.render('auth/register',
+        res.render('/auth/register',
         {
             title: 'Register',
             messages: req.flash('registerMessage'),
@@ -111,7 +111,7 @@ module.exports.processRegisterPage = (req,res,next) => {
                 );
                 console.log('Error: User already exists');
             }
-            return res.render('auth/register', 
+            return res.render('/auth/register', 
             {
                 title: 'Register',
                 messages: req.flash('registerMessage'),

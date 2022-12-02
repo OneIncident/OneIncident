@@ -6,6 +6,7 @@ import { IncidentListComponent } from './incident-list/incident-list.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
 
+
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: { title: 'Home', displayName: '' } },
   { path: 'login', data: { title: 'Login' }, redirectTo: '/admin/auth', pathMatch: 'full' },
