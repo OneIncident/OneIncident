@@ -1,0 +1,16 @@
+
+body {
+    background-color: #EAE7DC;
+    font-family: 'Lato', sans-serif;
+    width: 100%;
+}
+
+  
+.centered {
+    text-align: center;
+    padding: 200px 300px;
+}
+
+h1 {
+    font-size: 80px;
+}
