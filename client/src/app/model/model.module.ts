@@ -7,7 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   imports: [HttpClientModule, ReactiveFormsModule],
-  providers: [IncidentRepository, StaticDataSource, RestDataSource, //added RestDataSource and show the form for adding incident 
-    {provide: StaticDataSource, useClass: RestDataSource}]
+  providers: [IncidentRepository, StaticDataSource, //added RestDataSource and show the form for adding incident 
+    {provide: StaticDataSource, useClass: RestDataSource},
+    RestDataSource]
 })
 export class ModelModule {}

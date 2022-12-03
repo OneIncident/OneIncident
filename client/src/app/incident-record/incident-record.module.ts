@@ -6,9 +6,10 @@ import { IncidentRecordComponent } from '../incident-record/incident-record.comp
 import { CounterDirective } from './counter.directive';
 import { AddRecordComponent } from './add-record/add-record.component';
 import { EditRecordComponent } from './edit-record/edit-record.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [ModelModule, BrowserModule, FormsModule, ReactiveFormsModule],
+  imports: [ModelModule, BrowserModule, FormsModule, RouterModule, ReactiveFormsModule],
   declarations: [IncidentRecordComponent, CounterDirective, 
     AddRecordComponent, 
     EditRecordComponent

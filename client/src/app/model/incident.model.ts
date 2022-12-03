@@ -11,5 +11,20 @@ export class Incident
         //make model identical with the backend
         //format the data
     ) {}
+
+    public toString(): string
+  {
+    return `
+    Incident
+    -------------------------------
+    Name        : ${this.name}
+    Date        : ${this.date}
+    Status      : ${this.status}
+    Location    : ${this.location}
+    Priority    : ${this.priority}
+    Description : ${this.description}
+    -------------------------------
+    `;
+  }
 }
 

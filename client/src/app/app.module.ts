@@ -8,7 +8,12 @@ import { PagesModule } from './pages/pages.module';
 import { PartialsModule } from './partials/partials.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
 
+export function jwtTokenGetter(): string
+{
+  return localStorage.getItem('id_token');
+}
 
 @NgModule({
   declarations: [
@@ -21,7 +26,13 @@ import { HttpClientModule } from '@angular/common/http';
     PagesModule,
     PartialsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: jwtTokenGetter
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

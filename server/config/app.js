@@ -1,19 +1,21 @@
+// installed 3rd party packages
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let cors = require('cors');
 
 //modules for authentication
 let session = require('express-session');
-// modules for JWT
-let cors = require('cors');
 let passport = require('passport');
+
 let passportJWT = require('passport-jwt')
-let passportLocal = require('passport-local');
+
 // modules for JWT
 let JWTStrategy = passportJWT.Strategy;
 let ExtractJWT = passportJWT.ExtractJwt;
+let passportLocal = require('passport-local');
 let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
 
@@ -47,6 +49,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
+app.use(cors());
 
 //setup express session
 app.use(session({
@@ -75,11 +78,12 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-/* TODO
+//TODO
 //jwt
 let jwtOptions = {}; 
 jwtOptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
 jwtOptions.secretOrKey = db.Secret;
+
 let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done)=>{
   User.findById(jwt_payload.id)
   .then(User=>{
@@ -90,12 +94,11 @@ let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done)=>{
   });
 });
 passport.use(strategy);
-*/
 
+//routing
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/incidentlist',incidentsRouter);
-
 
 
 // catch 404 and forward to error handler
