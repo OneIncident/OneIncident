@@ -16,6 +16,7 @@ let JWTStrategy = passportJWT.Strategy;
 let ExtractJWT = passportJWT.ExtractJwt;
 let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
+let cors = require('cors');
 
 //TODO SET up MONGODB
 let mongoose = require('mongoose');
