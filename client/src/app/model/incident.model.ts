@@ -2,7 +2,6 @@ export class Incident
 {
     constructor (
         public _id?: number,
-        public record?: string,
         public name?: string,
         public date?: string,
         public status?: string,

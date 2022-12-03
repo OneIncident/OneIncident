@@ -1,25 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Incident } from '../model/incident.model';
 import { IncidentRepository } from './../model/incident.repository';
+import { RestDataSource } from '../model/rest.datasource'
 
 @Component({
   selector: 'app-incident-record',
   templateUrl: './incident-record.component.html',
   styleUrls: ['./incident-record.component.css']
 })
-export class IncidentRecordComponent {
+export class IncidentRecordComponent implements OnInit{
 
-public selectedStatus = null;
-public incidentsPerPage = 4;
-public selectedPage = 1;
-
-constructor(private repository: IncidentRepository) {}
+  constructor(private repository: IncidentRepository, private dataSource: RestDataSource) {}
+  
+  public selectedStatus = null;
+  public incidentsPerPage = 4;
+  public selectedPage = 1;
+  
+  //create variable & function for list
+  incidentData: any=[];
+  
+  ngOnInit(): void {
+    this.dataSource.getAllIncident().subscribe((allData) => {
+      console.log(allData);
+      this.incidentData = allData;
+    })
+  }
+  //end
 
 get incidents(): Incident[] 
 {
   const pageIndex = (this.selectedPage - 1) * this.incidentsPerPage;
-return this.repository.getIncidents(this.selectedStatus)
-.slice(pageIndex, pageIndex + this.incidentsPerPage);
+  return this.repository.getIncidents(this.selectedStatus)
+  .slice(pageIndex, pageIndex + this.incidentsPerPage);
 }
 
 get statuss(): string[] 
@@ -47,5 +59,13 @@ get pageCount(): number
 {
   return Math.ceil(this.repository
     .getIncidents(this.selectedStatus).length / this.incidentsPerPage);
+}
+
+deleteIncident(incident_id: any) {
+  //console.log(incident_id);
+  this.dataSource.deleteIncident(incident_id).subscribe((result)=> {
+    //console.log(result);
+    this.ngOnInit();
+  });
 }
 }

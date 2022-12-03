@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Incident } from './incident.model';
 import { StaticDataSource } from './static.datasource';
+import { RestDataSource } from './rest.datasource';
+
 
 @Injectable()
 export class IncidentRepository
@@ -8,7 +10,7 @@ export class IncidentRepository
   private incidents: Incident[] = [];
   private statuss: string[] = [];
 
-  constructor(private dataSource: StaticDataSource)
+  constructor(private dataSource: RestDataSource)
   { 
     //send the data to the subscriber of specific status 
     dataSource.getIncidents().subscribe(data => {
@@ -33,4 +35,5 @@ export class IncidentRepository
   {
     return this.statuss;
   }
+ 
 }

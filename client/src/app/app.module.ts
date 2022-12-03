@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { IncidentRecordModule } from './incident-record/incident-record.module'
 import { PagesModule } from './pages/pages.module';
 import { PartialsModule } from './partials/partials.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { PartialsModule } from './partials/partials.module';
     AppRoutingModule,
     IncidentRecordModule,
     PagesModule,
-    PartialsModule
+    PartialsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
