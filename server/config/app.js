@@ -11,24 +11,24 @@ let session = require('express-session');
 let passport = require('passport');
 
 let passportJWT = require('passport-jwt')
-
-// modules for JWT
 let JWTStrategy = passportJWT.Strategy;
 let ExtractJWT = passportJWT.ExtractJwt;
+
 let passportLocal = require('passport-local');
 let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
 
-//TODO SET up MONGODB
+//SET up MONGODB
 let mongoose = require('mongoose');
-let db=require('./db');
+let DB=require('./db');
 
 //point mongoose to the db URI
-mongoose.connect(db.URI, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(DB.URI, {useNewUrlParser: true, useUnifiedTopology: true});
+
 let mongoDB = mongoose.connection;
-mongoDB.on('error',console.error.bind(console,'connection Error:'));
+mongoDB.on('error',console.error.bind(console,'Connection Error:'));
 mongoDB.once('open',()=>{
-  console.log('connected to MongoDB...');
+  console.log('Connected to MongoDB...');
 })
 
 let indexRouter = require('../routes/index');
@@ -39,11 +39,10 @@ let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs'); 
 
 app.use(logger('dev'));
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
@@ -54,13 +53,14 @@ app.use(cors());
 //setup express session
 app.use(session({
   secret:'SomeSecret',
-  saveUninitialized:false,
+  saveUninitialized: false,
   //resave:false MAYBE NEED TO DELETE
   resave:false
 }));
 
 //initialize flash
 app.use(flash());
+
 //initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -82,7 +82,7 @@ passport.deserializeUser(User.deserializeUser());
 //jwt
 let jwtOptions = {}; 
 jwtOptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
-jwtOptions.secretOrKey = db.Secret;
+jwtOptions.secretOrKey = DB.Secret;
 
 let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done)=>{
   User.findById(jwt_payload.id)
@@ -98,7 +98,7 @@ passport.use(strategy);
 //routing
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/incidentlist',incidentsRouter);
+app.use('/incident-list',incidentsRouter);
 
 
 // catch 404 and forward to error handler

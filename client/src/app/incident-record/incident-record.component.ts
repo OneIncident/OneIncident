@@ -1,19 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component , OnInit} from '@angular/core';
 import { Incident } from '../model/incident.model';
 import { IncidentRepository } from './../model/incident.repository';
-import { RestDataSource } from '../model/rest.datasource'
+import { RestDataSource } from '../model/rest.datasource';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-incident-record',
   templateUrl: './incident-record.component.html',
   styleUrls: ['./incident-record.component.css']
 })
-export class IncidentRecordComponent implements OnInit{
+export class IncidentRecordComponent implements OnInit
+{
 
-  constructor(private repository: IncidentRepository, private dataSource: RestDataSource) {}
+  constructor(private repository: IncidentRepository, 
+              private dataSource: RestDataSource,
+              private router: Router) {}
   
   public selectedStatus = null;
-  public incidentsPerPage = 4;
+  public incidentsPerPage = 5;
   public selectedPage = 1;
   
   //create variable & function for list
@@ -25,7 +29,6 @@ export class IncidentRecordComponent implements OnInit{
       this.incidentData = allData;
     })
   }
-  //end
 
 get incidents(): Incident[] 
 {

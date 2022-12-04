@@ -1,103 +1,100 @@
 <%-include ('../partials/header.ejs')%>
-<%-include ('../partials/main_nav.ejs')%>
+    <%-include ('../partials/main_nav.ejs')%>
 
 
-<body>
-    <div class="content">
-       
-         <div class="centered">
-           <h2>Incident Record</h2>
-         
-       </div>
-     </div>
-     
-     <div class="all">
-         <div class="container">
-             <div class="row">
-                 <div class="col-md-offset-5 col-md-12">
-                     <h2><%= title %></h2>
-                     <form class="form" method="POST">
-                         <div class="form-group">
-                             <label for="nameTextField">Name </label>
-                             <input type="text" class="form-control"
-                             id="nameTextField"
-                             placeholder="Enter the Contact Name"
-                             name="name" 
-                             value="<%= incident.name %>"
-                             required>
-                         </div>
- 
-                         <div class="form-group">
-                            <label for="dateTextField">Date(DDMMYY)</label>
-                            <input type="text" class="form-control"
-                            id="dateTextField"
-                            placeholder="Enter the Date"
-                            name="date" 
-                            value="<%= incident.date %>"
-                            required>
+        <body>
+            <div class="content">
+
+                <div class="centered">
+                    <h2>Incident Record</h2>
+
+                </div>
+            </div>
+
+            <div class="all">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-offset-5 col-md-12">
+                            <h2>
+                                <%= title %>
+                            </h2>
+                            <form class="form" method="POST">
+                                <div class="form-group">
+                                    <label for="nameTextField">Name </label>
+                                    <input type="text" class="form-control" 
+                                        id="nameTextField"
+                                        placeholder="Enter the Contact Name" 
+                                        name="name" 
+                                        value="<%= incident.name %>"
+                                        required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="dateTextField">Date(DDMMYY)</label>
+                                    <input type="text" class="form-control" 
+                                        id="dateTextField"
+                                        placeholder="Enter the Date" 
+                                        name="date" 
+                                        value="<%= incident.date %>" 
+                                        required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="statusTextField">Select the status:</label>
+                                    <select class="form-control" name="status" id="statusTextField">
+                                        <option value="">--Please choose an option--</option>
+                                        <option value="In Progress">In Progress</option>
+                                        <option value="Dispatched">Dispatched</option>
+                                        <option value="Closed">Closed</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="locationTextField">Location </label>
+                                    <input type="text" class="form-control" 
+                                        id="locationTextField"
+                                        placeholder="Enter the Location" 
+                                        name="location"
+                                        value="<%= incident.location %>" 
+                                        required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="descriptionTextField">Description </label>
+                                    <input type="text" class="form-control" 
+                                        id="descriptionTextField"
+                                        placeholder="Enter the Description" 
+                                        name="description"
+                                        value="<%= incident.description %>" 
+                                        required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="priorityNumberField">Priority </label>
+                                    <input type="text" class="form-control" 
+                                        id="priorityNumberField"
+                                        placeholder="Enter the Priority" 
+                                        name="priority"
+                                        value="<%= incident.priority %>" 
+                                        required>
+                                </div>
+
+
+                                <button class="btn btn-light" type="submit">
+                                    <i class="fas fa-edit"></i> Submit</button>
+
+                                <a href="/incident-list" class="btn btn-warning">
+                                    <i class="fas fa-undo"></i> Cancel</a>
+                            </form>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                        <div class="form-group">
-                        <label for="statusTextField">Select the status:</label>
-
-                         
-                         <select class="form-control" name="status" id="statusTextField">                        
-                         <option value="">--Please choose an option--</option>
-                         <option value="In Progress">In Progress</option>
-                         <option value="Dispatched">Dispatched</option>
-                         <option value="Closed">Closed</option>
-    
-                         </select>
-                        </div>
-                        
-                        
+            </div>
+        </body>
 
 
-                        <div class="form-group">
-                            <label for="locationTextField">Location </label>
-                            <input type="text" class="form-control"
-                            id="locationTextField"
-                            placeholder="Enter the Location"
-                            name="location" 
-                            value="<%= incident.location %>"
-                            required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="descriptionTextField">Description </label>
-                            <input type="text" class="form-control"
-                            id="descriptionTextField"
-                            placeholder="Enter the Description"
-                            name="description" 
-                            value="<%= incident.description %>"
-                            required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="priorityNumberField">Priority </label>
-                            <input type="text" class="form-control"
-                            id="priorityNumberField"
-                            placeholder="Enter the Priority"
-                            name="priority" 
-                            value="<%= incident.priority %>"
-                            required>
-                        </div>
-                        
- 
-                         <button class="btn btn-light" type="submit">
-                             <i class="fas fa-edit"></i> Submit</button>
- 
-                             <a href="/incidentlist" class="btn btn-warning">
-                                 <i class="fas fa-undo"></i> Cancel</a>
-                     </form>
-                 </div>
-             </div>
-         </div>
-     </div>
-       
-    </div>
- </body>
-
-
- <%-include ('../partials/bottom_nav.ejs')%>
- <%-include ('../partials/footer.ejs')%>   
+        <%-include ('../partials/bottom_nav.ejs')%>
+            <%-include ('../partials/footer.ejs')%>

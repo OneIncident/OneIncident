@@ -6,6 +6,7 @@ let jwt = require('jsonwebtoken');
 
 //create a reference to the model
 let Incident = require('../model/incident');
+let Record = require('../model/record');
 
 module.exports.displayIncidentList = (req,res,next)=>{
     Incident.find((err, incidentList) => {
@@ -71,11 +72,10 @@ module.exports.displayEditPage = (req,res,next)=>{
             res.json({success: true, msg: 'Successfully Displayed Incident to Edit', incident: incidentToEdit});
         }
     });
-
 }
 
 module.exports.processEditPage = (req,res,next)=>{
-    let id = req.params.id
+    let id = req.params.id;
     let updatedIncident = Incident({
         "_id": id,
         "name": req.body.name,

@@ -11,7 +11,6 @@ let indexContronller = require('../controllers/index');
 // router.get('/dashboard', indexContronller.displaydashboardPage);
 
 
-
 // TODO
 // // GET route for Login Page
 //  router.get('/login', indexContronller.displayLoginPage);

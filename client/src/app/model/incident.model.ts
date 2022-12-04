@@ -16,14 +16,14 @@ export class Incident
   {
     return `
     Incident
-    -------------------------------
+    ---------------------------------
     Name        : ${this.name}
     Date        : ${this.date}
     Status      : ${this.status}
     Location    : ${this.location}
     Priority    : ${this.priority}
     Description : ${this.description}
-    -------------------------------
+    ---------------------------------
     `;
   }
 }

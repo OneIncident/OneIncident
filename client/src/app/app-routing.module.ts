@@ -7,40 +7,23 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  {
-    path: 'home', 
-    component: HomeComponent, 
-    data: {title: 'Home'}
-  },
-  {
-    path: 'dashboard', 
-    component: DashboardComponent, 
-    data: {title: 'Dashboard'}
-  },
-  {
-    path: 'incident-record', 
-    component: IncidentRecordComponent, 
-    data: {title: 'Incident Record'}
-  },
-  {
-    path: 'add-record', 
-    component: AddRecordComponent, 
-    data: {title: 'Add Incident Record'}
-  },
-  {
-    path: 'edit-record/:id', 
-    component: EditRecordComponent, 
-    data: {title: 'Edit Incident Record'}
-  },
-  {
-    path: '', 
-    redirectTo: '/home', 
-    pathMatch: 'full'
-  }
+  {path: 'home', component: HomeComponent, data: {title: 'Home'}},
+  {path: 'login', data: {title: 'Login'}, redirectTo: '/admin/auth', pathMatch: 'full'},
+
+  {path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
+  {path: 'incident-list', component: IncidentRecordComponent, data: {title: 'Incident Record'}},
+  
+  {path: 'add', component: AddRecordComponent, data: {title: 'Add Incident Record'}},
+  {path: 'edit/:id', component: EditRecordComponent, data: {title: 'Edit Incident Record'}},
+
+  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '**', redirectTo: '/home'}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: []
 })
 export class AppRoutingModule { }

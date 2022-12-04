@@ -7,7 +7,7 @@
 
         <!--create incident-->
         <div>
-            <a href="/add-record" class="btn btn-block btn-outline-secondary" role="button">
+            <a href="/add" class="btn btn-block btn-outline-secondary" role="button">
             <i class="fas fa-plus-circle"></i> Make a Ticket </a>
         </div>
         <div>
@@ -43,7 +43,7 @@
                 </tr>
 
                 <!--inject data into the list-->
-                <div *ngFor='let item of incidentData'>
+                <div *ngFor='let item of incidents'>
                     
                     <tr class="d-flex p-3">
                         <td class="text-center col-1">
@@ -69,7 +69,7 @@
                         </td>
 
                         <td class="text-center col-1">
-                            <a href="/edit-record/{{item.id}}" class="btn btn-dark btn-sm text-light">
+                            <a href="/edit/{{item.id}}" class="btn btn-dark btn-sm text-light">
                                 <i class="fas fa-pencil-alt"></i> Edit</a>
                         </td>
                         <td class="text-center col-1">

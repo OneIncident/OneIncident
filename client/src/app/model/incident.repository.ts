@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Incident } from './incident.model';
 import { StaticDataSource } from './static.datasource';
 import { RestDataSource } from './rest.datasource';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -35,5 +36,9 @@ export class IncidentRepository
   {
     return this.statuss;
   }
- 
+
+  saveIncident (incident: Incident): Observable<Incident>
+  {
+    return this.dataSource.saveIncidentData(incident);
+  }
 }
