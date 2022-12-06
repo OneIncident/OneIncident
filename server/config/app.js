@@ -49,6 +49,11 @@ app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
 app.use(cors());
+// deploy stuff
+// Port Number
+const port = process.env.PORT || 8080;
+// Set Static Folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 //setup express session
 app.use(session({
