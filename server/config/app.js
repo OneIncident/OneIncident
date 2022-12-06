@@ -45,15 +45,20 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../../public')));
-app.use(express.static(path.join(__dirname, '../../node_modules')));
+// app.use(express.static(path.join(__dirname, '../../public')));
+// app.use(express.static(path.join(__dirname, '../../node_modules')));
 
 app.use(cors());
 // deploy stuff
 // Port Number
 const port = process.env.PORT || 8080;
-// Set Static Folder
+// Set Static Folder Angular Deploy
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'node_modules')));
+
+app.get('*',(req,res)=>{
+  res.sendFile(path.join(__dirname,'public/index.html'));
+})
 
 //setup express session
 app.use(session({

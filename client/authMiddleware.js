@@ -5,7 +5,7 @@ const PASSWORD = '123456';
 
 const mappings =
 {
-  get: ['/api/orders', '/orders'],
+  get: ['/api/dashboard', '/dashboard'],
   post: ['/api/incident-list', '/incident-list', 'api/status', '/status']
 }
 
