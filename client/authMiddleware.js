@@ -34,7 +34,7 @@ module.exports = function (req, res, next)
   else if (requiresAuth(req.method, req.url))
   {
     let token = req.headers["authorization"] || "";
-    if (token.startsWith("Bearer<")) //means to get the token
+    if (token.startsWith("Bearer ")) //means to get the token
     {
       token = token.substring(7, token.length - 1);
       try

@@ -36,11 +36,12 @@ module.exports.displayLoginPage = (req, res, next) => {
 }
 // TODO
 module.exports.processLoginPage = (req, res, next) => {
+    console.log(req.user);
     passport.authenticate('local',
         (err, user, info) => {
             // server err?
             if (err) {
-                return next(err);
+                return res.status(500).send(err);
             }
             // is there a user login error?
             if (!user) {
@@ -50,7 +51,7 @@ module.exports.processLoginPage = (req, res, next) => {
             req.login(user, (err) => {
                 // server error?
                 if (err) {
-                    return next(err);
+                    return res.status(500).send(err);
                 }
 
                 const payload =
@@ -60,6 +61,8 @@ module.exports.processLoginPage = (req, res, next) => {
                     username: user.username,
                     email: user.email
                 }
+
+                console.log(`paylod:: IS HERE ${payload}`);
 
                 const authToken = jwt.sign(payload, DB.Secret, {
                     expiresIn: 604800 // 1 week

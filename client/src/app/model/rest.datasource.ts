@@ -30,8 +30,8 @@ export class RestDataSource
               private jwtService: JwtHelperService)
   {
     this.user = new User();
-    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
-    //this.baseUrl = `https://comp229-f2020-week10.herokuapp.com/api/`;
+    // this.baseUrl = `${http}://${location.hostname}:${PORT}/`;
+    this.baseUrl = `http://localhost:3500/`;
   }
   
 
@@ -42,6 +42,10 @@ export class RestDataSource
 
   authenticate(user: User): Observable<any>
   {
+    // console.log(this.http.post<any>(this.baseUrl + 'login', user, this.httpOptions));
+    // console.log(this.baseUrl);
+    console.log(user)
+    // console.log(this.httpOptions)
     return this.http.post<any>(this.baseUrl + 'login', user, this.httpOptions);
   }
 
