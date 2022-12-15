@@ -31,7 +31,7 @@ export class RestDataSource
   {
     this.user = new User();
     // this.baseUrl = `${http}://${location.hostname}:${PORT}/`;
-    this.baseUrl = `http://localhost:3500/`;
+    this.baseUrl = `/api/`;
   }
   
 
